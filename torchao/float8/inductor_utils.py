@@ -28,7 +28,7 @@ def amax_with_scaling_tiled_replacement(tensor_x_inp, scale_x, fp8_dtype, fp8_ma
 # We check that `scale_x` is not a dependency of `tensor_x_inp`
 def fp8_delayed_scaling_extra_check(match):
     scale_x_inputs = deque([match.kwargs["scale_x"]])
-    max_num_node_to_check = 50  # Don't traverse too many nodes
+    max_num_node_to_check = 20  # Don't traverse too many nodes
     current_num_node = 0
     while len(scale_x_inputs) > 0 and current_num_node < max_num_node_to_check:
         current_node = scale_x_inputs.popleft()
